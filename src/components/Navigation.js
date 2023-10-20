@@ -6,14 +6,11 @@ import CartContext from '../contexts/CartContext';
 const Navigation = () => {
 	const {cart} = useContext(CartContext);
 
-	const keys = Object.keys(localStorage);
-	const count = keys.length-3;
-
 	return (
 		<div className="navigation">
 			<NavLink to="/">Products</NavLink>
 			<NavLink to="/cart">
-				Cart <span>{count}</span>
+				Cart <span>{cart.length}</span>
 			</NavLink>
 		</div>
 	);

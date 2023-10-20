@@ -4,10 +4,10 @@ import CartContext from '../contexts/CartContext';
 
 const Item = props => {
 
-	const {removeItem} = useContext(CartContext);
+	const {alterCart} = useContext(CartContext);
 
-	const handleClick = (id) => {
-		removeItem(id);
+	const handleClick = item => {
+		alterCart(item, 'remove');
 	}
 
 	return (
@@ -18,7 +18,7 @@ const Item = props => {
 			<div>
 				<h1>{props.title}</h1>
 				<p>$ {props.price}</p>
-				<button onClick={()=>handleClick(props.id)}>Remove from cart</button>
+				<button onClick={()=>handleClick(props)}>Remove from cart</button>
 			</div>
 		</div>
 	);

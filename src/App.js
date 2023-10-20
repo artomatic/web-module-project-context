@@ -11,23 +11,38 @@ import ShoppingCart from './components/ShoppingCart';
 
 function App() {
 	const [products] = useState(data);
-	const [cart, setCart] = useState([]);
+	// const [cart, setCart] = useState([]);
 
-	const addItem = item => {
-		localStorage.setItem(`${item.id}`, JSON.stringify(item));
-		setCart([...cart, item])
+	// cart.map(item => {
+	// 	localStorage.setItem(`${item.id}`, JSON.stringify(item));
+	// })
+
+	const cart = [];
+	let keys = Object.keys(localStorage);
+	const filteredWords = ['undefined', 'test', 'false']
+	keys = keys.filter(key => !filteredWords.includes(key))
+	keys.map (key => {
+		cart.push(JSON.parse(localStorage.getItem(key)))
+	})
+
+	const alterCart = (item, type) => {
+		switch (type) {
+			case 'add':
+				localStorage.setItem(`${item.id}`, JSON.stringify(item));
+				break;
+			case 'remove':
+				localStorage.removeItem(item.id);
+				break;
+		}
+		// setCart([...cart, item])
+		// setCart(cart.filter( cartItem => cartItem.id !== id))
 	};
+		
 
-	const removeItem = (id) => {
-		console.log('remove item initiated')
-		console.log(cart)
-		setCart(cart.filter( cartItem => cartItem.id !== id))
-		console.log(cart)
-	}
 
 	return (
-		<ProductContext.Provider value={{products, addItem}}>
-			<CartContext.Provider value={{cart, removeItem}}>
+		<ProductContext.Provider value={{products, alterCart}}>
+			<CartContext.Provider value={{cart, alterCart}}>
 				<div className="App">
 					<Navigation/>
 

@@ -1,18 +1,13 @@
 import React from 'react';
+import { useContext } from 'react';
+import CartContext from '../contexts/CartContext';
 
 // Components
 import Item from './ShoppingCartItem';
 
 const ShoppingCart = () => {
 
-	// const {cart} = useContext(CartContext);
-	const cart = [];
-	let keys = Object.keys(localStorage);
-	const filteredWords = ['undefined', 'test', 'false']
-	keys = keys.filter(key => !filteredWords.includes(key))
-	keys.map (key => {
-		cart.push(JSON.parse(localStorage.getItem(key)))
-	})
+	const {cart} = useContext(CartContext);
 
 	const getCartTotal = () => {
 		return cart.reduce((acc, value) => {
