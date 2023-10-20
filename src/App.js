@@ -14,6 +14,7 @@ function App() {
 	const [cart, setCart] = useState([]);
 
 	const addItem = item => {
+		localStorage.setItem(`${item.id}`, JSON.stringify(item));
 		setCart([...cart, item])
 	};
 

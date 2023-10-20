@@ -7,7 +7,16 @@ import Item from './ShoppingCartItem';
 
 const ShoppingCart = () => {
 
-	const {cart} = useContext(CartContext);
+	// const {cart} = useContext(CartContext);
+	const cart = [];
+	let keys = Object.keys(localStorage);
+	const filteredWords = ['undefined', 'test', 'false']
+	keys = keys.filter(key => !filteredWords.includes(key))
+	keys.map (key => {
+		cart.push(JSON.parse(localStorage.getItem(key)))
+	})
+
+
 
 	const getCartTotal = () => {
 		return cart.reduce((acc, value) => {
