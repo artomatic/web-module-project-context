@@ -1,6 +1,4 @@
 import React from 'react';
-import { useContext} from 'react';
-import CartContext from '../contexts/CartContext';
 
 // Components
 import Item from './ShoppingCartItem';
@@ -15,8 +13,6 @@ const ShoppingCart = () => {
 	keys.map (key => {
 		cart.push(JSON.parse(localStorage.getItem(key)))
 	})
-
-
 
 	const getCartTotal = () => {
 		return cart.reduce((acc, value) => {
