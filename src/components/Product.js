@@ -1,15 +1,11 @@
 import React from 'react';
 
 const Product = props => {
-
 	return (
 		<div className="product">
 			<img src={props.product.image} alt={`${props.product.title} book`} />
-
 			<h1 className="title">{props.product.title}</h1>
-
 			<p className="price">${props.product.price}</p>
-
 			<button onClick={() => props.alterCart(props.product, 'add')}>
 				Add to cart
 			</button>

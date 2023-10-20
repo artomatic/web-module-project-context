@@ -11,11 +11,7 @@ import ShoppingCart from './components/ShoppingCart';
 
 function App() {
 	const [products] = useState(data);
-	// const [cart, setCart] = useState([]);
-
-	// cart.map(item => {
-	// 	localStorage.setItem(`${item.id}`, JSON.stringify(item));
-	// })
+	const [render, setRender] = useState(false)
 
 	const cart = [];
 	let keys = Object.keys(localStorage);
@@ -29,16 +25,14 @@ function App() {
 		switch (type) {
 			case 'add':
 				localStorage.setItem(`${item.id}`, JSON.stringify(item));
+				setRender(!render);
 				break;
 			case 'remove':
 				localStorage.removeItem(item.id);
+				setRender(!render);
 				break;
 		}
-		// setCart([...cart, item])
-		// setCart(cart.filter( cartItem => cartItem.id !== id))
 	};
-		
-
 
 	return (
 		<ProductContext.Provider value={{products, alterCart}}>
