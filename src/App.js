@@ -17,8 +17,9 @@ function App() {
 	let keys = Object.keys(localStorage);
 	const filteredWords = ['undefined', 'test', 'false']
 	keys = keys.filter(key => !filteredWords.includes(key))
-	keys.map (key => {
-		cart.push(JSON.parse(localStorage.getItem(key)))
+	console.log('456', keys)
+	keys.map ((key) => {
+		if (key !== 'token') cart.push(JSON.parse(localStorage.getItem(key)))
 	})
 
 	const alterCart = (item, type) => {
